@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Love Letter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #fff5f7;
+      --ink: #3a2a2a;
+      --accent: #e76f92;
+      --paper: #fffaf4;
+      --paper-line: #f5e6d3;
+      --shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Playfair Display", serif; color:var(--ink);
+      background: radial-gradient(1200px 600px at 10% -10%, #ffe4ec 0%, transparent 60%),
+                  radial-gradient(1300px 800px at 110% 10%, #ffe4ec 0%, transparent 60%),
+                  var(--bg);
+      display:grid; place-items:center; padding:28px;
+    }
+
+    .stage{ width:min(960px, 92%); display:grid; gap:22px }
+
+    /* Envelope */
+    .envelope{
+      position:relative; width:100%; aspect-ratio: 16/9; max-height: 340px;
+      border-radius:20px; overflow:hidden; box-shadow: var(--shadow); cursor:pointer;
+      background: linear-gradient(145deg, #fff 0%, #fbe5ea 100%);
+    }
+    .envelope .flap{
+      position:absolute; inset:0; background: conic-gradient(from 225deg at 50% 0%, #fbd0dc, #fff 30%, #fbd0dc 60%, #fff 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 55%);
+      transform-origin: top; transition: transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+    .envelope.open .flap{ transform: rotateX(180deg); }
+    .envelope .seal{
+      position:absolute; left:50%; top:38%; transform:translate(-50%,-50%);
+      width:64px; height:64px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #ff9db5, #e66d92);
+      box-shadow: 0 8px 16px rgba(230, 109, 146, .35), inset 0 4px 10px rgba(255,255,255,.6);
+      display:grid; place-items:center; color:white; font-family:"Dancing Script"; font-size:28px;
+      transition: transform .5s ease;
+    }
+    .envelope.open .seal{ transform: translate(-50%,-50%) scale(0); }
+
+    /* Letter */
+    .letter{ display:none; background: repeating-linear-gradient(var(--paper), var(--paper) 28px, var(--paper-line) 29px);
+      padding: 42px 40px; border-radius: 16px; box-shadow: var(--shadow);
+    }
+    .letter h1{ font-family:"Dancing Script", cursive; font-size: 40px; margin:0 0 8px }
+    .letter p{ font-size: 19px; line-height: 1.9; white-space: pre-wrap; margin: 12px 0 }
+    .signature{ font-family:"Dancing Script", cursive; font-size: 32px; margin-top: 24px }
+
+    .tip{ text-align:center; opacity:.75; font-size:.95rem }
+
+    @media print{
+      body{ background:white }
+      .envelope, .tip{ display:none !important }
+      .letter{ display:block; box-shadow:none; background:white }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="envelope" id="envelope" title="Click to open">
+      <div class="flap"></div>
+      <div class="seal">♥</div>
+    </div>
+
+    <article class="letter" id="letter">
+      <h1>Hi baby,</h1>
+      <p>
+I know I'm not the best at like talking but i wanted to make this for you. 
+
+I dont really know how to start this cause im pretty bad with words but, i love you. I really hope I make it clear.
+I do love you
+I think youre attractive
+I love listening to you
+I find you very funny
+I think you are perfect
+I'll be here no matter what
+I'll make time for you
+I'll always keep trying for you
+I'll be there for you
+I think about you 24/7
+I'll put you first
+I'll do anything for YOU
+You matter to me
+You'll always have my heart and my mind ALWAYS
+
+You know I really feel like we are connected in some way. Wherever I am no matter what I'm doing I feel you.
+I feel real now if that makes sense. Its like I have a purpose in life now, you complete me. Before I met you I would just go about the days not really paying attention, I would just let the days pass by. But now I think of you every second of the day, trying to be a better person for you.
+You've gave me like a new fire inside me, its really amazing. I want you in my life forever, I can't stand the thought of ever losing you. I wanna always play roblox with you, I wanna talk every single second of everyday, I wanna fall asleep to the sound of your voice every night.
+I love you so so so so so so so so so sooooooooooo sooooooooooooooo much
+
+No words will ever be enough to capture how much you mean to me, but I’ll spend my life trying.
+      </p>
+      <div class="signature">I love you with all my heart,<br>— Julian</div>
+    </article>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letter');
+
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('open');
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        letter.style.display = 'block';
+      }, 700);
+    });
+  </script>
+</body>
+</html>
